@@ -3,6 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Radios from "./Radios";
 import "./radio.css";
 import classnames from "classnames";
+import Table from "./Table";
 
 class Project extends Component {
   constructor(props) {
@@ -10,7 +11,9 @@ class Project extends Component {
 
     this.state = {
       fields: {},
-      errors: {}
+      errors: {},
+      formData: {},
+      showComponent: false
     };
   }
 
@@ -87,7 +90,7 @@ class Project extends Component {
       alert("Form has errors.");
     }
 
-    const formData = {
+    let formData = {
       initial: this.state.fields["initial"],
       name: this.state.fields["name"],
       email: this.state.fields["email"],
@@ -97,6 +100,15 @@ class Project extends Component {
 
     console.log(formData);
     console.log(formData.initial);
+
+    this.setState({
+      showComponent: true,
+      initial: this.state.fields["initial"],
+      name: this.state.fields["name"],
+      email: this.state.fields["email"],
+      address: this.state.fields["address"],
+      start_date: this.state.fields["start_date"]
+    });
   }
 
   handleChange(field, e) {
@@ -119,6 +131,10 @@ class Project extends Component {
     this.setState({ fields });
     fields["start_date"] = "";
     this.setState({ fields });
+
+    this.setState({
+      showComponent: false
+    });
     // document.getElementById("scpform").reset();
   };
 
@@ -143,10 +159,10 @@ class Project extends Component {
                       value={this.state.fields["initial"]}
                     >
                       <option value="">Select Initials</option>
-                      <option value="TO_DO">Mr.</option>
-                      <option value="IN_PROGRESS">Mrs.</option>
-                      <option value="DONE">Ms.</option>
-                      <option value="DONE">Miss</option>
+                      <option value="Mr">Mr.</option>
+                      <option value="Mrs">Mrs.</option>
+                      <option value="Ms">Ms.</option>
+                      <option value="Miss">Miss</option>
                     </select>
                     <span style={{ color: "red" }}>
                       {this.state.errors["initial"]}
@@ -253,6 +269,18 @@ class Project extends Component {
                     </div>
                   </div>
                 </form>
+                <div>
+                  <br />
+                  {this.state.showComponent && (
+                    <Table
+                      initial={this.state.initial}
+                      name={this.state.name}
+                      email={this.state.email}
+                      address={this.state.address}
+                      start_date={this.state.start_date}
+                    />
+                  )}
+                </div>
               </div>
             </div>
           </div>
