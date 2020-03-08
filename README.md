@@ -5,6 +5,8 @@ Steps to create a bootstrap react app
 
 1)  npm install -g create-react-app 
 2)  create-react-app app-name
+3) npm install bootstrap
+4) import "bootstrap/dist/css/bootstrap.min.css"; // This we need to import manually to work with bootstrap
 
 ## Available Scripts
 
