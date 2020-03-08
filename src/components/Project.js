@@ -86,6 +86,17 @@ class Project extends Component {
     } else {
       alert("Form has errors.");
     }
+
+    const formData = {
+      initial: this.state.fields["initial"],
+      name: this.state.fields["name"],
+      email: this.state.fields["email"],
+      address: this.state.fields["address"],
+      start_date: this.state.fields["start_date"]
+    };
+
+    console.log(formData);
+    console.log(formData.initial);
   }
 
   handleChange(field, e) {
